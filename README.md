@@ -1,176 +1,199 @@
-# GAIDeT — Utilities for a Generative AI disclosure checklist and statements
+# aidisclose — Generative AI disclosure checklist and statements
 
-[![CTAN](https://img.shields.io/ctan/v/GAIDeT)](https://ctan.org/pkg/gaidet)
+[![CTAN](https://img.shields.io/ctan/v/aidisclose)](https://ctan.org/pkg/aidisclose)
 [![License: LPPL 1.3c](https://img.shields.io/badge/license-LPPL%201.3c-blue)](https://www.latex-project.org/lppl/lppl-1-3c/)
-[![LaTeX](https://img.shields.io/badge/LaTeX-2020%2B-brightgreen)](https://www.latex-project.org/)
+[![LaTeX](https://img.shields.io/badge/LaTeX-LaTeX2e%202020%2F10%2F01%2B-brightgreen)](https://www.latex-project.org/)
 
----
+## Overview
 
-## About
+**aidisclose** is a LaTeX package that helps authors produce a clear, structured disclosure of how **Generative Artificial Intelligence (GAI)** tools were used when preparing a manuscript.
 
-* **Package:** GAIDeT — Utilities for Generative AI disclosure checklist and statements
-* **Copyright:** 2025 © João M. Lourenço <joao.lourenco@fct.unl.pt>
-* **CTAN:** https://ctan.org/pkg/GAIDeT
-* **Repository:** https://github.com/joaomlourenco/GAIDeT
-* **License:** The LaTeX Project Public License 1.3c
+The **aidisclose** package provides:
 
----
+- a taxonomy-based checklist of delegated tasks (GAIDeT-style identifiers);
+- a responsibility statement attributing final responsibility to the human author(s);
+- reporting of the GAI tools used;
+- optional additional comments (numbered or unnumbered);
+- a single command to render the whole disclosure block.
 
-## Description
-
-**GAIDeT** is a LaTeX package providing a standardized, transparent mechanism for declaring the use of Generative Artificial Intelligence (GAI) tools in academic, technical, and professional documents.
-
-The package is designed to support emerging ethical, institutional, and publisher requirements concerning AI-assisted content creation. It implements the *GAIDeT (Generative AI Delegation Taxonomy*, as proposed in
-Suchikova, Y., Tsybuliak, N., Teixeira da Silva, J. A., \& Nazarovets, S. (2025). GAIDeT (Generative AI Delegation Taxonomy): A taxonomy for humans to delegate tasks to generative artificial intelligence in scientific research and publishing. *Accountability in Research*, 1–27. https://doi.org/10.1080/08989621.2025.2544331
-
-GAIDeT (Generative AI Declaration of Transparency) enables authors to:
-
-- Declare whether and how Generative AI tools were used;
-- Explicitly state human responsibility for the final manuscript;
-- Report GAI tools employed during document preparation; and
-- Produce a consistent, reusable disclosure block.
-
-Generative AI tools are never listed as authors and bear no responsibility for the final content.
-
----
+GAI tools are not listed as authors and do not bear responsibility for the final outcomes.
 
 ## Installation
 
-### CTAN
+### Via CTAN
 
-The recommended installation method is via CTAN:
-
-```
-tlmgr install gaidet
+```text
+tlmgr install aidisclose
 ```
 
-### Manual Installation
+### Manual installation
 
-Alternatively, place the file:
+Place `aidisclose.sty` either next to your document or in a local `texmf` tree.
 
-```
-GAIDeT.sty
-```
-
-in the same directory as your document or in a local `texmf` tree.
-
----
-
-## Usage
-
-Load the package in the preamble:
+## Quick start
 
 ```tex
-\usepackage{GAIDeT}
+\usepackage{aidisclose}
+
+% —————————————————————————————————————————————————————
+% Configuration 
+
+% Optional: customize the title (short, long, and optional sectioning command)
+\GAIdiscloseTitle[AI disclosure]{Generative AI Disclosure Statement}[section]
+
+% Select checklist items from the taxonomy
+% The full list is available in the aidisclose-doc.pdf file
+\GAIactivate{c:idea}
+\GAIactivate{l:search}
+
+% Declare tools used
+\GAItoolsUsed{ChatGPT-5.2, Gemini-3}
+
+% Optional: add comments
+% non-stared comments are numbered sequentially
+% stared comments are not numbered
+\begin{GAIcomment}
+GAI tools were used for language editing only.
+\end{GAIcomment}
+
+\begin{GAIcomment*}
+No GAI tools were used for data analysis.
+\end{GAIcomment*}
+
+% —————————————————————————————————————————————————————
+% Declaration rendering 
+
+% Render the disclosure (optional argument = number of columns, default 3)
+\GAIrenderDeclaration[3]{Alice Smith, Bob Jones}
 ```
 
-### Setting the Declaration Title
+## Public interface
+
+### `\GAIrenderDeclaration`
+
+Render the full disclosure block (title, statement, checklist, tools, comments).
 
 ```tex
-\GAIdiscloseTitle{Generative AI Declaration of Transparency}
+\GAIrenderDeclaration[<cols>]{<authors>}
 ```
 
-With a short title:
+- `<cols>`: number of columns used for the checklist (default: `3`)
+- `<authors>`: comma-separated author list
+
+Examples:
 
 ```tex
-\GAIdiscloseTitle[GAI DeT]
-           {Generative AI Declaration of Transparency}
+\GAIrenderDeclaration{Jane Doe}
+\GAIrenderDeclaration[2]{Jane Doe, John Doe, Mary Doe}
 ```
 
-Stored titles can be reused later:
+### `\GAIdiscloseTitle`, `\GAIdiscloseTitleLong`, `\GAIdiscloseTitleShort`
+
+Set the title used when rendering the disclosure.
 
 ```tex
+\GAIdiscloseTitle[<short>]{<long>}[<sectioning cmd>]
+```
+
+- If `<short>` is omitted, it defaults to `<long>`.
+- If `<sectioning cmd>` is omitted/blank, the package picks `\chapter` when available, otherwise `\section`.
+
+Examples:
+
+```tex
+\GAIdiscloseTitle{Disclosure of Delegation to Generative AI}
+\GAIdiscloseTitle[Disclosure]{Disclosure of Delegation to Generative Artificial Intelligence}[\section*]
+
+% Retrieve stored titles
 \GAIdiscloseTitleLong
 \GAIdiscloseTitleShort
 ```
 
----
+### `\GAIactivate`
 
-### Rendering the Declaration
-
-```tex
-\RenderGAIDeTDeclaration{Alice Smith, Bob Jones}
-```
-
-Single-author case:
+Activate a checklist item by its taxonomy identifier (e.g., `c:idea`, `l:search`).
 
 ```tex
-\RenderGAIDeTDeclaration{Alice Smith}
+\GAIactivate{<id>}
 ```
 
-Optional number of columns while printing the Check Lisk.  Defaults to 3 columns.
+Example:
 
 ```tex
-\RenderGAIDeTDeclaration[1]{Alice Smith, Bob Jones}
+\GAIactivate{c:idea}
+\GAIactivate{w:edit}
 ```
 
----
+### `\GAItoolsUsed`
 
-### Declaring GAI Tools Used
+Declare the tools used (comma-separated list). This text is rendered as a sentence in the disclosure.
+
+```tex
+\GAItoolsUsed{<tool list>}
+```
+
+Example:
 
 ```tex
 \GAItoolsUsed{ChatGPT-5.2, Gemini 3 Pro}
 ```
 
----
+### `GAIcomment` and `GAIcomment*` environments
 
-### Activating Checklist Items
+Add comments to the disclosure:
+
+- `GAIcomment` is **numbered** and increments an internal counter.
+- `GAIcomment*` is **unnumbered** and does not increment the counter.
 
 ```tex
-\GAIactivate{c:idea}
-\GAIactivate{l:search}
+\begin{GAIcomment}
+...
+\end{GAIcomment}
+
+\begin{GAIcomment*}
+...
+\end{GAIcomment*}
 ```
 
-Activated items are reflected automatically in the rendered declaration.  See the documentation for the full list of Checklist Items.
+### `\GAIsetChecklistFontSize` (optional)
 
----
+Change the font size used when rendering the checklist:
+
+```tex
+\GAIsetChecklistFontSize{\small}
+```
+
+(The default in the package is `\smaller`.)
+
+### `\GAIsetCheckmarkSymbol` (optional)
+
+Change the symbol used inside the framed checkbox:
+
+```tex
+\GAIsetCheckmarkSymbol{\checkmark}
+```
+
+This also updates the internal width so checked/unchecked boxes align.
 
 ## Dependencies
 
-GAIDeT relies on standard LaTeX packages only:
+`aidisclose` uses only standard LaTeX packages:
 
 - `expl3`
 - `xparse`
+- `amssymb`
+- `multicol`
 - `enumitem`
 - `relsize`
 
-All dependencies are included in standard LaTeX distributions.
-
----
-
-## Design Philosophy
-
-- Minimal intrusion into document structure
-- Explicit human responsibility
-- Transparency rather than enforcement
-
-The package is class-agnostic and compatible with common LaTeX workflows.
-
----
-
 ## Documentation
 
-The full user manual is provided in:
-
-```
-GAIDeT-doc.tex
-```
-
----
+See `aidisclose-doc.tex` for the full manual, including the list of supported taxonomy identifiers and more examples.
 
 ## License
 
-This work is distributed under the **LaTeX Project Public License (LPPL) 1.3c** or later.
-
----
+This package is distributed under the **LaTeX Project Public License (LPPL) 1.3c** or later.
 
 ## Disclaimer
 
-This package does not enforce compliance with any specific policy.  
-Authors remain fully responsible for their manuscripts and for adherence to institutional, publisher, or legal requirements regarding the use of Generative AI tools.
-
----
-
-## CTAN Maintenance
-
-This package is intended for submission and maintenance on CTAN.
+This package helps authors format disclosures; it does not enforce any specific policy. Authors remain fully responsible for the manuscript content and for compliance with institutional, publisher, or legal requirements regarding the use of Generative AI tools.
