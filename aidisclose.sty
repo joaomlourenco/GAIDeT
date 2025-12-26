@@ -24,6 +24,12 @@
 % 1) VARIABLE DEFINITIONS
 % =========================================================
 
+% --- Strings ---
+\str_new:N \g__gai_bibfile_str
+\str_new:N \g__gai_preamble_str
+\str_new:N \g__gai_footnote_str
+
+
 % --- Dimensions ---
 \dim_new:N \l__gai_fboxsep_dim
 \dim_new:N \l__gai_boxwd_dim
@@ -53,6 +59,16 @@
 
 % --- Clists ---
 \clist_new:N \g__gai_authors_clist   % Stores the raw list of authors
+
+
+% --- set string variables ---
+\str_set:Nn \g__gai_bibfile_str { aidisclose.bib }
+\str_set:Nn \g__gai_preamble_str { 
+    the~use~of~Generative~AI~in~the~research~work~and~writing~process~of~this~document.~
+    According~to~the~GAIDeT~taxonomy,~the~following~tasks~were~delegated~to~
+    Generative~AI~tools~under~full~human~supervision: }
+\str_set:Nn \g__gai_footnote_str { This~declaration~was~generated~using~the~\LaTeX }
+
 
 % =========================================================
 % 2) INTERNAL UTILITIES
@@ -102,7 +118,7 @@
   {
     \tl_use:N \l__gai_authors_decl_tl
     \footnote{
-      This~declaration~was~generated~using~the~\LaTeX \space
+      \str_use:N \g__gai_footnote_str \space
       {\hypersetup{allcolors=black}
         \href{https://ctan.org/pkg/aidisclose}
              {\texttt{aidisclose}~package}
@@ -110,10 +126,7 @@
       \cite{Lourenco:2025:aidisclose}.
     }
     \space
-    the~use~of~Generative~AI~in~the~research~work~and~writing~process~of~this~
-    document.~According~to~the~GAIDeT~taxonomy,~
-    the~following~tasks~were~delegated~to~Generative~AI~tools~under~full~
-    human~supervision:
+    \str_use:N \g__gai_preamble_str
   }
 
 % --- Enumitem Configuration ---
@@ -374,11 +387,6 @@
       }
   }
 
-\AddToHook{begindocument/before}{
-  \@ifpackageloaded{biblatex}{
-    \addbibresource{aidisclose.bib}
-  }
-}
 
 
 
@@ -437,17 +445,15 @@
 % Detect and handle biblatex vs BibTeX
 %=========================================================
 
-\AddToHook{begindocument/before}{
+\AddToHook {begindocument/before} {
 
-  \ExplSyntaxOn
-
-\GAIcreateBibFile { aidisclose.bib }
+\GAIcreateBibFile { \str_use:N \g__gai_bibfile_str }
 
 \@ifpackageloaded { biblatex }
   { 
     % ===== BIBLATEX/BIBER MODE =====
     % Add our bib file using biblatex command
-    \addbibresource { aidisclose.bib }
+    \addbibresource { \str_use:N \g__gai_bibfile_str }
   }
   { 
     % ===== BIBTEX MODE =====
@@ -461,7 +467,6 @@
       }
   }
 
-  \ExplSyntaxOff
 }
 
 \endinput
