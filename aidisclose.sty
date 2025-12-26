@@ -5,7 +5,7 @@
 % This file may be distributed and/or modified under the conditions of
 % the LaTeX Project Public License, either version 1.3c of this license
 % or (at your option) any later version.
-\def\gaiversion{1.5.2}
+\def\gaiversion{1.6.0}
 %
 \NeedsTeXFormat{LaTeX2e}[2020/10/01]
 \ProvidesExplPackage {aidisclose} {2025/12/26} {\gaiversion} 
@@ -24,7 +24,6 @@
   }
 \ProcessKeyOptions[aidisclose]
 
-% Standard dependencies
 \ifcsname checkmark\endcsname\else
   \RequirePackage{amssymb}   % for \checkmark
 \fi
@@ -33,10 +32,9 @@
 \RequirePackage{relsize}     % for relative font sizing
 
 % =========================================================
-% 1) VARIABLE DEFINITIONS
+% 1) VARIABLE DEFINITIONS (Strings)
 % =========================================================
 
-% --- UI Strings ---
 \str_new:N \g__gai_bibfile_str
 \tl_new:N  \g__gai_str_tools_used_tl
 \tl_new:N  \g__gai_str_none_used_tl
@@ -47,10 +45,10 @@
 \tl_new:N  \g__gai_str_footnote_tl
 \tl_new:N  \g__gai_str_comment_label_tl
 \tl_new:N  \g__gai_str_comment_star_label_tl
-\tl_new:N  \g__gai_str_title_long_tl  % Default translated long title
-\tl_new:N  \g__gai_str_title_short_tl % Default translated short title
+\tl_new:N  \g__gai_str_title_long_tl
+\tl_new:N  \g__gai_str_title_short_tl
 
-% --- Taxonomy Group Titles ---
+% Taxonomy Group Titles
 \tl_new:N \g__gai_str_grp_conc_tl
 \tl_new:N \g__gai_str_grp_lit_tl
 \tl_new:N \g__gai_str_grp_meth_tl
@@ -60,28 +58,23 @@
 \tl_new:N \g__gai_str_grp_eth_tl
 \tl_new:N \g__gai_str_grp_sup_tl
 
-% --- Taxonomy Item Strings ---
-% Conceptualization
+% Taxonomy Item Strings
 \tl_new:N \g__gai_str_c_idea_tl
 \tl_new:N \g__gai_str_c_obj_tl
 \tl_new:N \g__gai_str_c_rq_tl
 \tl_new:N \g__gai_str_c_feas_tl
 \tl_new:N \g__gai_str_c_pre_tl
-% Literature
 \tl_new:N \g__gai_str_l_srch_tl
 \tl_new:N \g__gai_str_l_wrt_tl
 \tl_new:N \g__gai_str_l_pat_tl
 \tl_new:N \g__gai_str_l_gaps_tl
-% Methodology
 \tl_new:N \g__gai_str_m_des_tl
 \tl_new:N \g__gai_str_m_proto_tl
 \tl_new:N \g__gai_str_m_meth_tl
-% Software
 \tl_new:N \g__gai_str_s_gen_tl
 \tl_new:N \g__gai_str_s_opt_tl
 \tl_new:N \g__gai_str_s_auto_tl
 \tl_new:N \g__gai_str_s_algs_tl
-% Data
 \tl_new:N \g__gai_str_d_coll_tl
 \tl_new:N \g__gai_str_d_val_tl
 \tl_new:N \g__gai_str_d_cln_tl
@@ -89,7 +82,6 @@
 \tl_new:N \g__gai_str_d_anl_tl
 \tl_new:N \g__gai_str_d_viz_tl
 \tl_new:N \g__gai_str_d_rep_tl
-% Writing
 \tl_new:N \g__gai_str_w_gen_tl
 \tl_new:N \g__gai_str_w_prf_tl
 \tl_new:N \g__gai_str_w_sum_tl
@@ -98,33 +90,30 @@
 \tl_new:N \g__gai_str_w_tra_tl
 \tl_new:N \g__gai_str_w_ref_tl
 \tl_new:N \g__gai_str_w_prs_tl
-% Ethics
 \tl_new:N \g__gai_str_e_bias_tl
 \tl_new:N \g__gai_str_e_risk_tl
 \tl_new:N \g__gai_str_e_comp_tl
 \tl_new:N \g__gai_str_e_conf_tl
-% Supervision
 \tl_new:N \g__gai_str_sup_qa_tl
 \tl_new:N \g__gai_str_sup_trd_tl
 \tl_new:N \g__gai_str_sup_lim_tl
 \tl_new:N \g__gai_str_sup_rec_tl
 \tl_new:N \g__gai_str_sup_pub_tl
 
-% --- Dimensions ---
+% --- Other Variables ---
 \dim_new:N \l__gai_fboxsep_dim
 \dim_new:N \l__gai_boxwd_dim
 \dim_new:N \l__gai_labelsep_dim
 \dim_set:Nn \l__gai_fboxsep_dim { 1.2pt }
 \dim_set:Nn \l__gai_labelsep_dim { 0.9em }
 
-% --- Sequences & Lists ---
 \seq_new:N \g__gai_active_keys_seq
 \seq_new:N \l__gai_tools_seq
 \tl_new:N  \l__gai_temp_tl
 \tl_new:N  \g__gai_comments_tl
 \tl_new:N  \g__gai_taxonomy_tl
-\tl_new:N  \g__gai_title_long_tl     % User-overridden long title
-\tl_new:N  \g__gai_title_short_tl    % User-overridden short title
+\tl_new:N  \g__gai_title_long_tl
+\tl_new:N  \g__gai_title_short_tl
 \tl_new:N  \g__gai_section_cmd_tl
 \tl_new:N  \g__gai_tools_sentence_tl
 \tl_new:N  \l__gai_authors_decl_tl
@@ -137,7 +126,7 @@
 \str_set:Nn \g__gai_bibfile_str { aidisclose.bib }
 
 % =========================================================
-% 2) KEYS DEFINITIONS (English & Portuguese)
+% 2) KEYS DEFINITIONS
 % =========================================================
 
 \NewDocumentCommand \GAIsetStrings { m }
@@ -147,7 +136,6 @@
 
 \keys_define:nn { aidisclose / strings }
   {
-    % --- English Keys ---
     tools_used    .tl_set:N = \g__gai_str_tools_used_tl,
     none_used     .tl_set:N = \g__gai_str_none_used_tl,
     declares      .tl_set:N = \g__gai_str_declares_tl,
@@ -209,209 +197,83 @@
     sup_lim       .tl_set:N = \g__gai_str_sup_lim_tl,
     sup_rec       .tl_set:N = \g__gai_str_sup_rec_tl,
     sup_pub       .tl_set:N = \g__gai_str_sup_pub_tl,
-
-    % --- Portuguese Keys (Aliases) ---
-    ferramentas_utilizadas      .tl_set:N = \g__gai_str_tools_used_tl,
-    nenhuma_utilizada           .tl_set:N = \g__gai_str_none_used_tl,
-    declara                     .tl_set:N = \g__gai_str_declares_tl,
-    declaram                    .tl_set:N = \g__gai_str_declare_tl,
-    e                           .tl_set:N = \g__gai_str_and_tl,
-    preambulo                   .tl_set:N = \g__gai_str_preamble_tl,
-    rodape                      .tl_set:N = \g__gai_str_footnote_tl,
-    etiqueta_comentario         .tl_set:N = \g__gai_str_comment_label_tl,
-    etiqueta_comentario_estrela .tl_set:N = \g__gai_str_comment_star_label_tl,
-    titulo_longo                .tl_set:N = \g__gai_str_title_long_tl,
-    titulo_curto                .tl_set:N = \g__gai_str_title_short_tl,
-
-    grupo_conc    .tl_set:N = \g__gai_str_grp_conc_tl,
-    grupo_lit     .tl_set:N = \g__gai_str_grp_lit_tl,
-    grupo_met     .tl_set:N = \g__gai_str_grp_meth_tl,
-    grupo_soft    .tl_set:N = \g__gai_str_grp_soft_tl,
-    grupo_dados   .tl_set:N = \g__gai_str_grp_data_tl,
-    grupo_escrita .tl_set:N = \g__gai_str_grp_write_tl,
-    grupo_etica   .tl_set:N = \g__gai_str_grp_eth_tl,
-    grupo_sup     .tl_set:N = \g__gai_str_grp_sup_tl,
-
-    c_ideia       .tl_set:N = \g__gai_str_c_idea_tl,
-    c_obj         .tl_set:N = \g__gai_str_c_obj_tl,
-    c_qi          .tl_set:N = \g__gai_str_c_rq_tl,
-    c_viab        .tl_set:N = \g__gai_str_c_feas_tl,
-    c_pre         .tl_set:N = \g__gai_str_c_pre_tl,
-    l_pesq        .tl_set:N = \g__gai_str_l_srch_tl,
-    l_escr        .tl_set:N = \g__gai_str_l_wrt_tl,
-    l_pat         .tl_set:N = \g__gai_str_l_pat_tl,
-    l_lacunas     .tl_set:N = \g__gai_str_l_gaps_tl,
-    m_desenho     .tl_set:N = \g__gai_str_m_des_tl,
-    m_proto       .tl_set:N = \g__gai_str_m_proto_tl,
-    m_metodos     .tl_set:N = \g__gai_str_m_meth_tl,
-    s_ger         .tl_set:N = \g__gai_str_s_gen_tl,
-    s_otim        .tl_set:N = \g__gai_str_s_opt_tl,
-    s_auto        .tl_set:N = \g__gai_str_s_auto_tl,
-    s_alg         .tl_set:N = \g__gai_str_s_algs_tl,
-    d_recolha     .tl_set:N = \g__gai_str_d_coll_tl,
-    d_val         .tl_set:N = \g__gai_str_d_val_tl,
-    d_limp        .tl_set:N = \g__gai_str_d_cln_tl,
-    d_cur         .tl_set:N = \g__gai_str_d_cur_tl,
-    d_analise     .tl_set:N = \g__gai_str_d_anl_tl,
-    d_viz         .tl_set:N = \g__gai_str_d_viz_tl,
-    d_rep         .tl_set:N = \g__gai_str_d_rep_tl,
-    w_ger         .tl_set:N = \g__gai_str_w_gen_tl,
-    w_rev         .tl_set:N = \g__gai_str_w_prf_tl,
-    w_res         .tl_set:N = \g__gai_str_w_sum_tl,
-    w_conc        .tl_set:N = \g__gai_str_w_con_tl,
-    w_tom         .tl_set:N = \g__gai_str_w_tone_tl,
-    w_trad        .tl_set:N = \g__gai_str_w_tra_tl,
-    w_ref         .tl_set:N = \g__gai_str_w_ref_tl,
-    w_com         .tl_set:N = \g__gai_str_w_prs_tl,
-    e_vies        .tl_set:N = \g__gai_str_e_bias_tl,
-    e_risco       .tl_set:N = \g__gai_str_e_risk_tl,
-    e_conform     .tl_set:N = \g__gai_str_e_comp_tl,
-    e_confid      .tl_set:N = \g__gai_str_e_conf_tl,
-    sup_aq        .tl_set:N = \g__gai_str_sup_qa_tl,
-    sup_tend      .tl_set:N = \g__gai_str_sup_trd_tl,
-    sup_lim       .tl_set:N = \g__gai_str_sup_lim_tl,
-    sup_rec       .tl_set:N = \g__gai_str_sup_rec_tl,
-    sup_pub       .tl_set:N = \g__gai_str_sup_pub_tl,
   }
-
-% --- Language Presets ---
-
-\cs_new:Nn \__gai_set_strings_english:
-  {
-    \GAIsetStrings{
-      tools_used    = {Generative~AI~tools~used:},
-      none_used     = {No~Generative~AI~tools~were~used.},
-      declares      = {declares},
-      declare       = {declare},
-      and           = {and},
-      preamble      = {the~use~of~Generative~AI~in~the~research~work~and~writing~process~of~this~document.~According~to~the~GAIDeT~taxonomy~\cite{Suchikova:2025:GAIDeT},~the~following~tasks~were~delegated~to~Generative~AI~tools~under~full~human~supervision:},
-      footnote      = {This~declaration~was~generated~using~the~\LaTeX},
-      comment_label = {Additional~comment},
-      comment_star  = {Additional~comment},
-      title_long    = {Disclosure~of~Delegation~to~Generative~Artificial~Intelligence},
-      title_short   = {Disclosure~of~Delegation~to~Generative~AI},
-      grp_conc = {Conceptualization},
-      grp_lit  = {Literature~Review},
-      grp_meth = {Methodology},
-      grp_soft = {Software~Development~and~Automation},
-      grp_data = {Data~Management},
-      grp_write= {Writing~and~Editing},
-      grp_eth  = {Ethics~Review},
-      grp_sup  = {Supervision},
-      c_idea   = {Idea~generation},
-      c_obj    = {Defining~the~research~objective},
-      c_rq     = {Formulating~research~questions~and~hypotheses},
-      c_feas   = {Feasibility~assessment~and~risk~evaluation},
-      c_pre    = {Preliminary~hypothesis~testing},
-      l_srch   = {Literature~search~and~systematization},
-      l_wrt    = {Writing~the~literature~review},
-      l_pat    = {Analysis~of~market~trends~and/or~patent~environment},
-      l_gaps   = {Evaluation~of~novelty~and~identification~of~gaps},
-      m_des    = {Research~design},
-      m_proto  = {Development~of~experimental~or~research~protocols},
-      m_meth   = {Selection~of~research~methods},
-      s_gen    = {Code~generation},
-      s_opt    = {Code~optimization},
-      s_auto   = {Process~automation},
-      s_algs   = {Creation~of~algorithms~for~data~analysis},
-      d_coll   = {Data~collection},
-      d_val    = {Validation},
-      d_cln    = {Data~cleaning},
-      d_cur    = {Data~curation~and~organization},
-      d_anl    = {Data~analysis},
-      d_viz    = {Visualization},
-      d_rep    = {Reproducibility~testing},
-      w_gen    = {Text~generation},
-      w_prf    = {Proofreading~and~editing},
-      w_sum    = {Summarizing~text},
-      w_con    = {Formulation~of~conclusions},
-      w_tone   = {Adapting~and~adjusting~emotional~tone},
-      w_tra    = {Translation},
-      w_ref    = {Reformatting},
-      w_prs    = {Press~releases~and~outreach~materials},
-      e_bias   = {Bias~analysis~and~discrimination~assessment},
-      e_risk   = {Ethical~risk~analysis},
-      e_comp   = {Monitoring~compliance~with~ethical~standards},
-      e_conf   = {Data~confidentiality~monitoring},
-      sup_qa   = {Quality~assessment},
-      sup_trd  = {Trend~identification},
-      sup_lim  = {Identification~of~limitations},
-      sup_rec  = {Recommendations},
-      sup_pub  = {Publication~support},
-    }
-  }
-
-\cs_new:Nn \__gai_set_strings_portuguese:
-  {
-    \GAIsetStrings{
-      ferramentas_utilizadas = {Ferramentas~de~IA~Generativa~utilizadas:},
-      nenhuma_utilizada      = {Não~foram~utilizadas~ferramentas~de~IA~Generativa.},
-      declara                = {declara},
-      declaram               = {declaram},
-      e                      = {e},
-      preambulo              = {a~utilização~de~IA~Generativa~no~trabalho~de~investigação~e~processo~de~escrita~deste~documento.~De~acordo~com~a~taxonomia~GAIDeT~\cite{Suchikova:2025:GAIDeT},~as~seguintes~tarefas~foram~delegadas~a~ferramentas~de~IA~Generativa~sob~total~supervisão~humana:},
-      rodape                 = {Esta~declaração~foi~gerada~usando~o~pacote~\LaTeX},
-      etiqueta_comentario    = {Comentário~adicional},
-      etiqueta_comentario_estrela = {Comentário~adicional},
-      titulo_longo           = {Declaração~de~Delegação~a~Inteligência~Artificial~Generativa},
-      titulo_curto           = {Declaração~de~Delegação~a~IA~Generativa},
-      grupo_conc    = {Concetualização},
-      grupo_lit     = {Revisão~de~Literatura},
-      grupo_met     = {Metodologia},
-      grupo_soft    = {Desenvolvimento~de~Software~e~Automação},
-      grupo_dados   = {Gestão~de~Dados},
-      grupo_escrita = {Escrita~e~Edição},
-      grupo_etica   = {Revisão~Ética},
-      grupo_sup     = {Supervisão},
-      c_ideia       = {Geração~de~ideias},
-      c_obj         = {Definição~do~objetivo~de~investigação},
-      c_qi          = {Formulação~de~questões~de~investigação~e~hipóteses},
-      c_viab        = {Avaliação~de~viabilidade~e~análise~de~risco},
-      c_pre         = {Teste~preliminar~de~hipóteses},
-      l_pesq        = {Pesquisa~e~sistematização~de~literatura},
-      l_escr        = {Escrita~da~revisão~de~literatura},
-      l_pat         = {Análise~de~tendências~de~mercado~e/ou~ambiente~de~patentes},
-      l_lacunas     = {Avaliação~de~novidade~e~identificação~de~lacunas},
-      m_desenho     = {Desenho~de~investigação},
-      m_proto       = {Desenvolvimento~de~protocolos~experimentais~ou~de~investigação},
-      m_metodos     = {Seleção~de~métodos~de~investigação},
-      s_ger         = {Geração~de~código},
-      s_otim        = {Otimização~de~código},
-      s_auto        = {Automação~de~processos},
-      s_alg         = {Criação~de~algoritmos~para~análise~de~dados},
-      d_recolha     = {Recolha~de~dados},
-      d_val         = {Validação},
-      d_limp        = {Limpeza~de~dados},
-      d_cur         = {Curadoria~e~organização~de~dados},
-      d_analise     = {Análise~de~dados},
-      d_viz         = {Visualização},
-      d_rep         = {Teste~de~reprodutibilidade},
-      w_ger         = {Geração~de~texto},
-      w_rev         = {Revisão~e~edição},
-      w_res         = {Resumo~de~texto},
-      w_conc        = {Formulação~de~conclusões},
-      w_tom         = {Adaptação~e~ajuste~de~tom~emocional},
-      w_trad        = {Tradução},
-      w_ref         = {Reformatação},
-      w_com         = {Comunicados~de~imprensa~e~materiais~de~divulgação},
-      e_vies        = {Análise~de~viés~e~avaliação~de~discriminação},
-      e_risco       = {Análise~de~risco~ético},
-      e_conform     = {Monitorização~de~conformidade~com~padrões~éticos},
-      e_confid      = {Monitorização~de~confidencialidade~de~dados},
-      sup_aq        = {Avaliação~de~qualidade},
-      sup_tend      = {Identificação~de~tendências},
-      sup_lim       = {Identificação~de~limitações},
-      sup_rec       = {Recomendações},
-      sup_pub       = {Apoio~à~publicação},
-    }
-  }
-
-% Set default to English initially
-\__gai_set_strings_english:
 
 % =========================================================
-% 3) INTERNAL UTILITIES
+% 3) LANGUAGE HANDLING
 % =========================================================
+
+\prop_new:N \g__gai_lang_map_prop
+\prop_gset_from_keyval:Nn \g__gai_lang_map_prop
+  {
+    english    = en,
+    american   = en,
+    british    = en,
+    canadian   = en,
+    australian = en,
+    newzealand = en,
+    UKenglish  = en,
+    USenglish  = en,
+    portuguese = pt,
+    brazilian  = pt,
+    portuges   = pt
+  }
+
+\cs_new_protected:Nn \__gai_load_lang_file:n
+  {
+    % Updated to look for .ldf files
+    \file_if_exist:nTF { aidisclose-#1.ldf }
+      { \file_input:n { aidisclose-#1.ldf } }
+      { \file_input:n { aidisclose-en.ldf } }
+  }
+
+\cs_new_protected:Nn \__gai_detect_and_load_language:
+  {
+    \bool_set_false:N \l_tmpa_bool
+    
+    \ifcsname languagename\endcsname
+      \prop_get:NxNTF \g__gai_lang_map_prop { \languagename } \l__suffix_tl
+        { 
+          \__gai_load_lang_file:n { \l__suffix_tl }
+          \bool_set_true:N \l_tmpa_bool
+        }
+        {}
+    \fi
+    
+    \bool_if:NF \l_tmpa_bool
+      {
+        \__gai_load_lang_file:n { en }
+      }
+  }
+
+% =========================================================
+% 4) INTERNAL UTILITIES & TAXONOMY
+% =========================================================
+
+% Detect the Engine Name (LuaLaTeX, XeLaTeX, pdfLaTeX)
+\NewDocumentCommand \GAIengineName {}
+  {
+    \sys_if_engine_luatex:TF { Lua\LaTeX }
+      {
+        \sys_if_engine_xetex:TF { Xe\LaTeX }
+          {
+            \sys_if_engine_pdftex:TF { pdf\LaTeX } { \LaTeX }
+          }
+      }
+  }
+
+% Print Package Name with Link
+\NewDocumentCommand \GAIpackageName {}
+  {
+    \group_begin:
+      \cs_if_exist:NTF \hypersetup
+        { \hypersetup{allcolors=black} }
+        {}
+      \cs_if_exist:NTF \href
+        { \href{https://ctan.org/pkg/aidisclose}{\texttt{aidisclose}} }
+        { \texttt{aidisclose} }
+    \group_end:
+  }
 
 \cs_new_protected:Npn \__gai_print_checked_box:
   {
@@ -440,22 +302,13 @@
   {
     \tl_use:N \l__gai_authors_decl_tl
     \footnote{
-      \tl_use:N \g__gai_str_footnote_tl \space
-      {
-        \cs_if_exist:NTF \hypersetup
-          { \hypersetup{allcolors=black} }
-          {}
-        \cs_if_exist:NTF \href
-          { \href{https://ctan.org/pkg/aidisclose}{\texttt{aidisclose}~package} }
-          { \texttt{aidisclose}~package }
-      }\space
+      \tl_use:N \g__gai_str_footnote_tl \nobreakspace
       \cite{Lourenco:2025:aidisclose}.
     }
     \space
     \tl_use:N \g__gai_str_preamble_tl
   }
 
-% --- Enumitem Configuration ---
 \newlist{gailist}{itemize}{1}
 \setlist[gailist]{
   label=\textbullet,
@@ -467,114 +320,7 @@
   labelsep=\l__gai_labelsep_dim
 }
 
-% =========================================================
-% 4) USER CONFIGURATION COMMANDS
-% =========================================================
-
-\NewDocumentCommand \GAIsetCheckmarkSymbol { m }
-  {
-    \tl_gset:Nn \g__gai_checkmark_symbol_tl { #1 }
-    \hbox_set:Nn \l_tmpa_box { \fbox { #1 } }
-    \dim_set:Nn \l__gai_boxwd_dim { \box_wd:N \l_tmpa_box }
-  }
-
-\NewDocumentCommand \GAIactivate { m }
-  {
-    \tl_set:Nn \l__gai_temp_tl { #1 }
-    \tl_trim_spaces:N \l__gai_temp_tl
-    \seq_gput_right:Nx \g__gai_active_keys_seq { \tl_to_str:N \l__gai_temp_tl }
-  }
-
-\NewDocumentCommand \GAItoolsUsed { m }
-  {
-    \tl_gclear:N \g__gai_tools_sentence_tl
-    \tl_if_blank:nTF { #1 }
-      { \tl_gset_eq:NN \g__gai_tools_sentence_tl \g__gai_str_none_used_tl }
-      {
-        \seq_set_split:Nnn \l__gai_tools_seq { , } { #1 }
-        \seq_set_map:NNn \l__gai_tools_seq \l__gai_tools_seq { \tl_trim_spaces:n {##1} }
-        \seq_remove_all:Nn \l__gai_tools_seq { }
-        \tl_gset:Nx \g__gai_tools_sentence_tl
-          {
-            \seq_use:Nnnn \l__gai_tools_seq 
-              { ~\tl_use:N \g__gai_str_and_tl~ } 
-              { ,~ } 
-              { ,~\tl_use:N \g__gai_str_and_tl~ } .
-          }
-      }
-  }
-
-\NewDocumentCommand \GAIsetChecklistFontSize { m }
-  {
-    \tl_gset:Nn \g__gai_fontsize_tl { #1 }
-  }
-
-% Stores user overrides. If #2 is blank, it won't override.
-\NewDocumentCommand \GAIdiscloseTitle { o m O{} }
-  {
-    \tl_gset:Nn \g__gai_title_long_tl { #2 }
-    \IfNoValueTF { #1 }
-      { \tl_gset:Nn \g__gai_title_short_tl { #2 } }
-      { \tl_gset:Nn \g__gai_title_short_tl { #1 } }
-    \tl_if_blank:nTF { #3 }
-      {
-        \cs_if_exist:cTF { chapter }
-          { \tl_gset:Nn \g__gai_section_cmd_tl { \chapter } }
-          { \tl_gset:Nn \g__gai_section_cmd_tl { \section } }
-      }
-      { \tl_gset:Nn \g__gai_section_cmd_tl { #3 } }
-  }
-
-% Return user title if set, else return localized default
-\NewDocumentCommand \GAIdiscloseTitleLong {} 
-  { 
-    \tl_if_empty:NTF \g__gai_title_long_tl 
-      { \tl_use:N \g__gai_str_title_long_tl } 
-      { \tl_use:N \g__gai_title_long_tl }
-  }
-
-% Return user short title if set, else return localized default
-\NewDocumentCommand \GAIdiscloseTitleShort {} 
-  { 
-     \tl_if_empty:NTF \g__gai_title_short_tl 
-      { \tl_use:N \g__gai_str_title_short_tl } 
-      { \tl_use:N \g__gai_title_short_tl }
-  }
-
-% --- Default Configuration ---
-% We set the section command default immediately
-\cs_if_exist:cTF { chapter }
-  { \tl_gset:Nn \g__gai_section_cmd_tl { \chapter } }
-  { \tl_gset:Nn \g__gai_section_cmd_tl { \section } }
-
-\GAIsetChecklistFontSize { \smaller }
-\GAIsetCheckmarkSymbol { \checkmark } 
-
-% =========================================================
-% 5) COMMENT ENVIRONMENTS
-% =========================================================
-\NewDocumentEnvironment{GAIcomment}{ +b }
-  {
-    \tl_gput_right:Nn \g__gai_comments_tl
-      {
-        \int_gincr:N \g__gai_comment_int
-        \par \bigskip \noindent
-        \textbf{\tl_use:N \g__gai_str_comment_label_tl~\#\int_use:N \g__gai_comment_int}~ #1 \par
-      }
-  } { }
-
-\NewDocumentEnvironment{GAIcomment*}{ +b }
-  {
-    \tl_gput_right:Nn \g__gai_comments_tl
-      {
-        \par \bigskip \noindent
-        \textbf{\tl_use:N \g__gai_str_comment_star_label_tl}~ #1 \par
-      }
-  } { }
-
-% =========================================================
-% 6) TAXONOMY DATA
-% =========================================================
+% --- Taxonomy Data Structure ---
 \tl_gset:Nn \g__gai_taxonomy_tl {
   \TGroup{\tl_use:N \g__gai_str_grp_conc_tl}{
     \TItem{c:idea}   {\tl_use:N \g__gai_str_c_idea_tl}
@@ -635,6 +381,107 @@
 }
 
 % =========================================================
+% 5) USER CONFIGURATION COMMANDS
+% =========================================================
+
+\NewDocumentCommand \GAIsetCheckmarkSymbol { m }
+  {
+    \tl_gset:Nn \g__gai_checkmark_symbol_tl { #1 }
+    \hbox_set:Nn \l_tmpa_box { \fbox { #1 } }
+    \dim_set:Nn \l__gai_boxwd_dim { \box_wd:N \l_tmpa_box }
+  }
+
+\NewDocumentCommand \GAIactivate { m }
+  {
+    \tl_set:Nn \l__gai_temp_tl { #1 }
+    \tl_trim_spaces:N \l__gai_temp_tl
+    \seq_gput_right:Nx \g__gai_active_keys_seq { \tl_to_str:N \l__gai_temp_tl }
+  }
+
+\NewDocumentCommand \GAItoolsUsed { m }
+  {
+    \tl_gclear:N \g__gai_tools_sentence_tl
+    \tl_if_blank:nTF { #1 }
+      { \tl_gset_eq:NN \g__gai_tools_sentence_tl \g__gai_str_none_used_tl }
+      {
+        \seq_set_split:Nnn \l__gai_tools_seq { , } { #1 }
+        \seq_set_map:NNn \l__gai_tools_seq \l__gai_tools_seq { \tl_trim_spaces:n {##1} }
+        \seq_remove_all:Nn \l__gai_tools_seq { }
+        \tl_gset:Nx \g__gai_tools_sentence_tl
+          {
+            \seq_use:Nnnn \l__gai_tools_seq 
+              { \ \tl_use:N \g__gai_str_and_tl\  } 
+              { ,\  } 
+              { ,\ \tl_use:N \g__gai_str_and_tl\  } .
+          }
+      }
+  }
+
+\NewDocumentCommand \GAIsetChecklistFontSize { m }
+  {
+    \tl_gset:Nn \g__gai_fontsize_tl { #1 }
+  }
+
+\NewDocumentCommand \GAIdiscloseTitle { o m O{} }
+  {
+    \tl_gset:Nn \g__gai_title_long_tl { #2 }
+    \IfNoValueTF { #1 }
+      { \tl_gset:Nn \g__gai_title_short_tl { #2 } }
+      { \tl_gset:Nn \g__gai_title_short_tl { #1 } }
+    \tl_if_blank:nTF { #3 }
+      {
+        \cs_if_exist:cTF { chapter }
+          { \tl_gset:Nn \g__gai_section_cmd_tl { \chapter } }
+          { \tl_gset:Nn \g__gai_section_cmd_tl { \section } }
+      }
+      { \tl_gset:Nn \g__gai_section_cmd_tl { #3 } }
+  }
+
+\NewDocumentCommand \GAIdiscloseTitleLong {} 
+  { 
+    \tl_if_empty:NTF \g__gai_title_long_tl 
+      { \tl_use:N \g__gai_str_title_long_tl } 
+      { \tl_use:N \g__gai_title_long_tl }
+  }
+
+\NewDocumentCommand \GAIdiscloseTitleShort {} 
+  { 
+     \tl_if_empty:NTF \g__gai_title_short_tl 
+      { \tl_use:N \g__gai_str_title_short_tl } 
+      { \tl_use:N \g__gai_title_short_tl }
+  }
+
+% Default Configuration
+\cs_if_exist:cTF { chapter }
+  { \tl_gset:Nn \g__gai_section_cmd_tl { \chapter } }
+  { \tl_gset:Nn \g__gai_section_cmd_tl { \section } }
+
+\GAIsetChecklistFontSize { \smaller }
+\GAIsetCheckmarkSymbol { \checkmark } 
+
+% =========================================================
+% 6) COMMENT ENVIRONMENTS
+% =========================================================
+\NewDocumentEnvironment{GAIcomment}{ +b }
+  {
+    \tl_gput_right:Nn \g__gai_comments_tl
+      {
+        \int_gincr:N \g__gai_comment_int
+        \par \bigskip \noindent
+        \textbf{\tl_use:N \g__gai_str_comment_label_tl\ \#\int_use:N \g__gai_comment_int}\  #1 \par
+      }
+  } { }
+
+\NewDocumentEnvironment{GAIcomment*}{ +b }
+  {
+    \tl_gput_right:Nn \g__gai_comments_tl
+      {
+        \par \bigskip \noindent
+        \textbf{\tl_use:N \g__gai_str_comment_star_label_tl}\  #1 \par
+      }
+  } { }
+
+% =========================================================
 % 7) MAIN RENDERING ENGINE
 % =========================================================
 \NewDocumentCommand \GAIrenderDeclaration { s O{3} m }
@@ -643,13 +490,13 @@
     \int_set:Nn \g__gai_authors_int { \clist_count:N \g__gai_authors_clist }
     
     \int_compare:nNnTF { \g__gai_authors_int } = { 1 }
-      { \tl_set:Nx \l__gai_authors_decl_tl { #3~\tl_use:N \g__gai_str_declares_tl } }
+      { \tl_set:Nx \l__gai_authors_decl_tl { #3\ \tl_use:N \g__gai_str_declares_tl } }
       { 
         \tl_set:Nx \l__gai_authors_decl_tl 
           { 
             \clist_use:Nnnn \g__gai_authors_clist
-              { ~\tl_use:N \g__gai_str_and_tl \space } { ,\space} { ,~\tl_use:N \g__gai_str_and_tl \space } 
-            ~\tl_use:N \g__gai_str_declare_tl 
+              { \ \tl_use:N \g__gai_str_and_tl \space } { ,\space} { ,\ \tl_use:N \g__gai_str_and_tl \space } 
+            \ \tl_use:N \g__gai_str_declare_tl 
           }
       }
 
@@ -668,7 +515,6 @@
 
     \group_begin:
       \tl_use:N \g__gai_fontsize_tl
-      
       \cs_set:Npn \TGroup ##1 ##2
         {
           \par \bigskip
@@ -688,21 +534,17 @@
               \end { multicols }
             }
         }
-
       \cs_set:Npn \TItem ##1 ##2
         {
           \item [ \__gai_checkbox_for:n { ##1 } ]
           \parbox[t]{\linewidth}{ \raggedright ##2 }
         }
-      
       \cs_set_eq:NN \TSubItem \TItem
       \tl_use:N \g__gai_taxonomy_tl
     \group_end:
 
     \par \bigskip
-    
-    \noindent \textbf { \tl_use:N \g__gai_str_tools_used_tl } ~ \tl_use:N \g__gai_tools_sentence_tl
-
+    \noindent \textbf { \tl_use:N \g__gai_str_tools_used_tl } \  \tl_use:N \g__gai_tools_sentence_tl
     \tl_if_empty:NF \g__gai_comments_tl
       {
         \par \bigskip
@@ -710,12 +552,9 @@
       }
   }
 
-%=========================================================
-% BIBLIOGRAPHY HANDLING
-%=========================================================
-
-\msg_new:nnn { aidisclose } { file-exists }
-  { File~'#1'~already~exists.~Overwriting~to~ensure~compatibility. }
+% =========================================================
+% 8) BIBLIOGRAPHY HANDLING
+% =========================================================
 
 \cs_new_protected:Nn \__aidisclose_write_bib_file:n
   {
@@ -745,33 +584,17 @@
   }
 
 \AddToHook {begindocument/before} {
-  % 1. Auto-detect Language
-  \ifcsname languagename\endcsname
-    \str_case_e:nnF { \languagename }
-      {
-        { portuguese } { \__gai_set_strings_portuguese: }
-        { brazilian }  { \__gai_set_strings_portuguese: }
-        { portuges }   { \__gai_set_strings_portuguese: }
-      }
-      { 
-        % Default to English
-      }
-  \fi
-
-  % 2. Handle Bibliography
+  \__gai_detect_and_load_language:
+  
   \bool_if:NT \g__gai_autobib_bool
     {
       \__aidisclose_write_bib_file:n { \str_use:N \g__gai_bibfile_str }
       \@ifpackageloaded { biblatex }
-        { 
-          \addbibresource { \str_use:N \g__gai_bibfile_str }
-        }
+        { \addbibresource { \str_use:N \g__gai_bibfile_str } }
         { 
           \cs_set_eq:NN \__aidisclose_orig_bibliography:n \bibliography
           \RenewDocumentCommand \bibliography { m }
-            {
-              \__aidisclose_orig_bibliography:n { aidisclose , #1 }
-            }
+            { \__aidisclose_orig_bibliography:n { aidisclose , #1 } }
         }
     }
 }

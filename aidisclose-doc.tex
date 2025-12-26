@@ -14,20 +14,35 @@
 %%
 \documentclass[11pt]{article}
 
-\usepackage[portuguese]{babel}
+% \usepackage[portuguese]{babel}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% AI disclose stuff
-\usepackage{aidisclose}
+%% 1. Basic Utilities & Formatting
+\usepackage{xcolor}      % Must be before hyperref (for colors)
+\usepackage{url}
+\usepackage{booktabs}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 4. Bibliography 
+%% Patches tabularx/xltabular, so it must come AFTER them
+\usepackage{tabularx}
 \usepackage{biblatex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Other dependencies for this file
-\usepackage{url}
-\usepackage{xcolor}
-\usepackage{xltabular}
-\usepackage{booktabs}
+%% 2. Tables 
+%% MUST load before biblatex to avoid "Patching 'tabularx' failed" error
+\usepackage{xltabular} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 3. This Package
+\usepackage{aidisclose}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 5. Hyperlinks
+%% Almost always goes LAST
 \usepackage[colorlinks,allcolors=blue!70!black]{hyperref}
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% MAIN DOCUMENT
