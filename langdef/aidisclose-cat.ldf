@@ -1,7 +1,7 @@
 % aidisclose-cat.ldf - Catalan
 \GAIsetStrings{
   tools_used    = {Eines\ d'IA\ generativa\ utilitzades:},
-  none_used     = {No\ s'han\ utilitzat\ eines\ d'IA\ generativa.},
+  none_used     = {No\ es\ van\ declarar\ eines\ d’IA\ generativa.},
   declares      = {declara},
   declare       = {declaren},
   and           = {i},

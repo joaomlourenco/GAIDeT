@@ -433,7 +433,6 @@
 
 \NewDocumentCommand \GAItoolsUsed { m }
   {
-    \tl_gclear:N \g__gai_tools_sentence_tl
     \tl_if_blank:nTF { #1 }
       { \tl_gset_eq:NN \g__gai_tools_sentence_tl \g__gai_str_none_used_tl }
       {
@@ -630,6 +629,7 @@
             { \__aidisclose_orig_bibliography:n { aidisclose , #1 } }
         }
     }
+    \GAItoolsUsed { }
 }
 
 \endinput

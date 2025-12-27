@@ -1,7 +1,7 @@
 % aidisclose-sk.ldf - Slovak
 \GAIsetStrings{
   tools_used    = {Použité\ nástroje\ generatívnej\ UI:},
-  none_used     = {Neboli\ použité\ žiadne\ nástroje\ generatívnej\ UI.},
+  none_used     = {Neboli\ deklarované\ žiadne\ nástroje\ generatívnej\ AI.},
   declares      = {vyhlasuje},
   declare       = {vyhlasujú},
   and           = {a},

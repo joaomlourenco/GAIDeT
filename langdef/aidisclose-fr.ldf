@@ -1,7 +1,7 @@
 % aidisclose-fr.ldf - French
 \GAIsetStrings{
   tools_used    = {Outils\ d'IA\ générative\ utilisés\ :},
-  none_used     = {Aucun\ outil\ d'IA\ générative\ n'a\ été\ utilisé.},
+  none_used     = {Aucun\ outil\ d’IA\ générative\ n’a\ été\ déclaré.},
   declares      = {déclare},
   declare       = {déclarent},
   and           = {et},

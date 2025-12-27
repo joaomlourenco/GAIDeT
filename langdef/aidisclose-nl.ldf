@@ -1,7 +1,7 @@
 % aidisclose-nl.ldf - Dutch
 \GAIsetStrings{
   tools_used    = {Gebruikte\ generatieve\ AI-tools:},
-  none_used     = {Er\ zijn\ geen\ generatieve\ AI-tools\ gebruikt.},
+  none_used     = {Er\ zijn\ geen\ generatieve\ AI-hulpmiddelen\ opgegeven.},
   declares      = {verklaart},
   declare       = {verklaren},
   and           = {en},

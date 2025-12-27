@@ -1,7 +1,7 @@
 % aidisclose-dk.ldf - Danish
 \GAIsetStrings{
   tools_used    = {Anvendte\ generative\ AI-værktøjer:},
-  none_used     = {Der\ blev\ ikke\ anvendt\ generative\ AI-værktøjer.},
+  none_used     = {Der\ blev\ ikke\ erklæret\ generative\ AI-værktøjer.},
   declares      = {erklærer},
   declare       = {erklærer},
   and           = {og},

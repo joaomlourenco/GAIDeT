@@ -1,7 +1,7 @@
 % aidisclose-cz.ldf - Czech
 \GAIsetStrings{
   tools_used    = {Použité\ nástroje\ generativní\ UI:},
-  none_used     = {Nebyly\ použity\ žádné\ nástroje\ generativní\ UI.},
+  none_used     = {Nebyly\ deklarovány\ žádné\ nástroje\ generativní\ AI.},
   declares      = {prohlašuje},
   declare       = {prohlašují},
   and           = {a},

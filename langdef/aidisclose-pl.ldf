@@ -1,7 +1,7 @@
 % aidisclose-pl.ldf - Polish
 \GAIsetStrings{
   tools_used    = {Użyte\ narzędzia\ generatywnej\ SI:},
-  none_used     = {Nie\ użyto\ narzędzi\ generatywnej\ SI.},
+  none_used     = {Nie\ zadeklarowano\ żadnych\ narzędzi\ generatywnej\ SI.},
   declares      = {oświadcza},
   declare       = {oświadczają},
   and           = {i},
