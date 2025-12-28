@@ -26,6 +26,23 @@ The package allows authors to:
 
 ---
 
+## Companion Website (generator)
+
+The package is supported by the companion website **[aidisclose.org](https://aidisclose.org)**.
+
+The website provides an interactive interface where authors can:
+
+- **Fill in authors** and (optionally) the GAI tools used
+- **Browse the GAIDeT taxonomy** visually and **Select delegated tasks**.
+- **Select delegated tasks** from the GAIDeT taxonomy
+- Add multiple comments (numbered or unnumbered), reorder them by drag-and-drop, and preview numbering
+- Generate either a **full minimal LaTeX document** or just a **configuration snippet**
+- Copy the generated code to the clipboard
+
+If you generate a full document, the website also points you to download `aidisclose.sty` and compile the resulting `.tex` file.
+
+---
+
 ## Package loading and options
 
 Load the package in the document preamble:
@@ -210,4 +227,4 @@ This package is distributed under the **LaTeX Project Public License (LPPL) 1.3c
 ---
 
 Copyright © 2025-26 João M. Lourenço.  
-Crafted with 💙 for reproducible scientific writing.
+Crafted with 🧡 for reproducible scientific writing.

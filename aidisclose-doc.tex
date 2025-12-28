@@ -81,7 +81,9 @@
 \maketitle
 
 \begin{abstract}
-    The \texttt{aidisclose} package provides a standardized, transparent mechanism for declaring the use of Generative Artificial Intelligence (GAI) tools in academic, technical, and professional documents. It implements the \emph{GAIDeT (Generative AI Delegation Taxonomy)}~\cite{Suchikova:2025:GAIDeT} and automates the creation of disclosure statements and checklists.
+    The \texttt{aidisclose} package provides a standardized, transparent mechanism for declaring the use of Generative Artificial Intelligence (GAI) tools in academic, technical, and professional documents.
+    It implements the \emph{GAIDeT (Generative AI Delegation Taxonomy)}~\cite{Suchikova:2025:GAIDeT} and automates the creation of disclosure statements and checklists.
+    The package is supported by a companion website at \url{https://aidisclose.org}, which allows interactive generation of the LaTeX code to add to your document.
 \end{abstract}
 
 
@@ -90,7 +92,8 @@
 \section{Introduction}
 \label{sec:introduction}
 
-\texttt{aidisclose} is designed to support emerging ethical, institutional, and publisher requirements concerning AI-assisted content creation. It allows authors to:
+\texttt{aidisclose} is designed to support emerging ethical, institutional, and publisher requirements concerning AI-assisted content creation.
+It allows authors to:
 
 \begin{itemize}
     \item Select specific tasks delegated to Generative ~AI (GAI) from the GAIDeT taxonomy~\cite{Suchikova:2025:GAIDeT} (e.g., idea generation, data cleaning, text summarization).
@@ -99,6 +102,19 @@
     \item Automatically generate a formatted “\emph{Disclosure of Delegation to Generative AI}” section/chapter.
     \item Automatically handle citations for the taxonomy and the package itself.
 \end{itemize}
+
+\subsection*{Companion web generator}
+
+\begingroup
+\slshape
+A companion web interface is available at \url{https://aidisclose.org}. It provides an interactive
+generator for \texttt{aidisclose}-based Generative AI disclosure statements, following the GAIDeT taxonomy~\cite{Suchikova:2025:GAIDeT}.
+
+The website can be used to (i) select delegated tasks, (ii) declare GAI tools (or explicitly declare none),
+(iii) add multiple numbered or unnumbered comments (with reordering and numbering preview),
+and (iv) generate either a complete minimal \LaTeX{} document or a ready-to-paste configuration snippet.
+The generated code can be copied to the clipboard and incorporated into your manuscript.
+\endgroup
 
 \section{Package Loading and Options}
 \label{sec:loading}
@@ -126,7 +142,6 @@ The package currently supports the following key-value option:
 \label{sec:i18n}
 
 The package automatically detects the document language (via \texttt{babel} or \texttt{polyglossia}) and loads the corresponding translation file (\texttt{.ldf}).
-
 \paragraph{Currently (v\gaiversion) Supported Languages:}~
 
 \begin{itemize}[
@@ -162,6 +177,8 @@ The declaration process consists of two steps: \textbf{Configuration} (defining 
 
 Configuration commands can be placed in the preamble or in the document body before the rendering command is called.
 
+\textbf{Tip (Interactive Generator):} You can use the companion website \url{https://aidisclose.org} to visually select tasks and tools. The website will automatically generate the configuration code (the \latexinline|\GAIactivate| and \latexinline|\GAItoolsUsed| commands) which you can simply copy and paste into your document.
+
 \subsubsection{Activating Taxonomy Items}
 Use \latexinline|\GAIactivate{}| to check specific items in the taxonomy. See Section~\ref{sec:taxonomy-keys} for all available keys.
 
@@ -172,7 +189,8 @@ Use \latexinline|\GAIactivate{}| to check specific items in the taxonomy. See Se
 \end{ltx}
 
 \subsubsection{Specifying Tools}
-Use \latexinline|\GAItoolsUsed{}| to list the AI tools employed. The package handles formatting (singular/plural) automatically.
+Use \latexinline|\GAItoolsUsed{}| to list the AI tools employed.
+The package handles formatting (singular/plural) automatically.
 
 \begin{ltx}
 % Example 1: No tools used
@@ -211,12 +229,14 @@ Change the default section title and hierarchy level using \latexinline|\GAIdisc
 
 \begin{itemize}
     \item \textbf{Checkmark Symbol:} \latexinline|\GAIsetCheckmarkSymbol{\texttimes}| (default is \latexinline|\checkmark|).
-    \item \textbf{Font Size:} \latexinline|\GAIsetChecklistFontSize{\small}| (default is \latexinline|\smaller|, meaning: \emph{slightly smaller than the current font size}).
+    \item \textbf{Font Size:} \latexinline|\GAIsetChecklistFontSize{\small}|
+(default is \latexinline|\smaller|, meaning: \emph{slightly smaller than the current font size}).
 \end{itemize}
 
 \subsection{Rendering the Declaration}
 
-Place the \latexinline|\GAIrenderDeclaration| command where you want the disclosure to appear (e.g., after the Conclusion or before References).
+Place the \latexinline|\GAIrenderDeclaration|
+command where you want the disclosure to appear (e.g., after the Conclusion or before References).
 
 \begin{ltx}
 \GAIrenderDeclaration[<columns>]{<authors>}
@@ -232,7 +252,8 @@ Place the \latexinline|\GAIrenderDeclaration| command where you want the disclos
 \section{Taxonomy Keys}
 \label{sec:taxonomy-keys}
 
-Use these keys with \latexinline|\GAIactivate{}|. Derived from the GAIDeT taxonomy~\cite{Suchikova:2025:GAIDeT}.
+Use these keys with \latexinline|\GAIactivate{}|.
+Derived from the GAIDeT taxonomy~\cite{Suchikova:2025:GAIDeT}.
 
 \begin{center}
 \small
@@ -262,7 +283,8 @@ Use these keys with \latexinline|\GAIactivate{}|. Derived from the GAIDeT taxono
 \texttt{s:codegen} & Code generation \\
 \texttt{s:opt} & Code optimization \\
 \texttt{s:auto} & Process automation \\
-\texttt{s:algs} & Algorithms for data analysis \\
+\texttt{s:algs} & Algorithms 
+for data analysis \\
 \midrule
 \multicolumn{2}{c}{\textbf{Data Management}} \\
 \texttt{d:collect} & Data collection \\
@@ -288,7 +310,8 @@ Use these keys with \latexinline|\GAIactivate{}|. Derived from the GAIDeT taxono
 \texttt{e:risk} & Ethical risk analysis \\
 \texttt{e:compliance} & Compliance monitoring \\
 \texttt{e:conf} & Data confidentiality monitoring \\
-\texttt{sup:qa} & Quality assessment \\
+\texttt{sup:qa} & 
+Quality assessment \\
 \texttt{sup:trends} & Trend identification \\
 \texttt{sup:limits} & Identification of limitations \\
 \texttt{sup:recs} & Recommendations \\
@@ -303,7 +326,8 @@ Use these keys with \latexinline|\GAIactivate{}|. Derived from the GAIDeT taxono
 
 \section{Example Output}
 
-Below is an example of a rendered declaration. The configuration used is:
+Below is an example of a rendered declaration.
+The configuration used is:
 
 \begin{ltx}
 % Configuration
@@ -324,17 +348,18 @@ AI was used for refining code structure in Section~4.
 \end{ltx}
 
 % --- Conceptualization ---
-\GAIactivate{c:idea}        % Idea generation
+% \GAIactivate{c:idea}        % Idea generation
 % \GAIactivate{c:objective}   % Defining the research objective
 \GAIactivate{c:rq}          % Formulating research questions and hypotheses
-% \GAIactivate{c:feas}        % Feasibility assessment and risk evaluation
-% \GAIactivate{c:pretest}     % Preliminary hypothesis testing
+\GAIactivate{c:feas}        % Feasibility assessment and risk evaluation
+\GAIactivate{c:pretest}     % Preliminary hypothesis testing
 
 % --- Literature Review ---
 \GAIactivate{l:search}      % Literature search and systematization
 \GAIactivate{l:write}       % Writing the literature review
 % \GAIactivate{l:patents}     % Market trends / patent environment
-% \GAIactivate{l:gaps}        % Novelty evaluation and gap identification
+% \GAIactivate{l:gaps}     
+   % Novelty evaluation and gap identification
 
 % --- Methodology ---
 % \GAIactivate{m:design}      % Research design
@@ -349,7 +374,8 @@ AI was used for refining code structure in Section~4.
 
 % --- Data Management ---
 % \GAIactivate{d:collect}     % Data collection
-% \GAIactivate{d:validate}    % Validation
+% 
+\GAIactivate{d:validate}    % Validation
 % \GAIactivate{d:clean}       % Data cleaning
 % \GAIactivate{d:curate}      % Data curation and organization
 \GAIactivate{d:analyze}     % Data analysis
@@ -361,7 +387,8 @@ AI was used for refining code structure in Section~4.
 % \GAIactivate{w:proof}       % Proofreading and editing
 \GAIactivate{w:summarize}   % Summarizing text
 % \GAIactivate{w:concl}       % Formulation of conclusions
-% \GAIactivate{w:tone}        % Emotional tone adjustment
+% \GAIactivate{w:tone}     
+   % Emotional tone adjustment
 % \GAIactivate{w:translate}   % Translation
 \GAIactivate{w:reformat}    % Reformatting
 % \GAIactivate{w:press}       % Press releases and outreach materials
@@ -373,7 +400,8 @@ AI was used for refining code structure in Section~4.
 % \GAIactivate{e:conf}        % Data confidentiality monitoring
 % \GAIactivate{sup:qa}        % Quality assessment
 % \GAIactivate{sup:trends}    % Trend identification
-% \GAIactivate{sup:limits}    % Identification of limitations
+% \GAIactivate{sup:limits}   
+  % Identification of limitations
 % \GAIactivate{sup:recs}      % Recommendations
 % \GAIactivate{sup:pub}       % Publication support
 
