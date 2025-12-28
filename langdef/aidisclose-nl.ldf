@@ -5,7 +5,7 @@
   declares      = {verklaart},
   declare       = {verklaren},
   and           = {en},
-  preamble      = {het\ gebruik\ van\ generatieve\ AI\ in\ het\ onderzoekswerk\ en\ het\ schrijfproces\ van\ dit\ document.\ Volgens\ de\ GAIDeT-taxonomie \nobreakspace  \cite{Suchikova:2025:GAIDeT}\ zijn\ de\ volgende\ taken\ gedelegeerd\ aan\ generatieve\ AI-tools\ onder\ volledig\ menselijk\ toezicht:},
+  preamble      = {het\ gebruik\ van\ generatieve\ AI\ in\ het\ onderzoekswerk\ en\ het\ schrijfproces\ van\ dit\ document.\ Volgens\ de\ GAIDeT-taxonomie\CiteGAIDeT\ zijn\ de\ volgende\ taken\ gedelegeerd\ aan\ generatieve\ AI-tools\ onder\ volledig\ menselijk\ toezicht:},
   footnote      = {Deze\ verklaring\ is\ gegenereerd\ met\ behulp\ van\ \GAIengineName{}\ en\ het\ \LaTeX-pakket\ \GAIpackageName{}},
   comment_label = {Aanvullende\ opmerking},
   comment_star  = {Aanvullende\ opmerking},

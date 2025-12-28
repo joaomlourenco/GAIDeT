@@ -5,7 +5,7 @@
   declares      = {déclare},
   declare       = {déclarent},
   and           = {et},
-  preamble      = {l'utilisation\ de\ l'IA\ générative\ dans\ le\ travail\ de\ recherche\ et\ le\ processus\ de\ rédaction\ de\ ce\ document.\ Selon\ la\ taxonomie\ GAIDeT \nobreakspace  \cite{Suchikova:2025:GAIDeT},\ les\ tâches\ suivantes\ ont\ été\ déléguées\ à\ des\ outils\ d'IA\ générative\ sous\ une\ supervision\ humaine\ totale\ :},
+  preamble      = {l'utilisation\ de\ l'IA\ générative\ dans\ le\ travail\ de\ recherche\ et\ le\ processus\ de\ rédaction\ de\ ce\ document.\ Selon\ la\ taxonomie\ GAIDeT\CiteGAIDeT,\ les\ tâches\ suivantes\ ont\ été\ déléguées\ à\ des\ outils\ d'IA\ générative\ sous\ une\ supervision\ humaine\ totale\ :},
   footnote      = {Cette\ déclaration\ a\ été\ générée\ à\ l'aide\ de\ \GAIengineName{}\ et\ du\ paquet\ \LaTeX\ \GAIpackageName{}},
   comment_label = {Commentaire\ supplémentaire},
   comment_star  = {Commentaire\ supplémentaire},

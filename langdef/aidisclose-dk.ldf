@@ -5,7 +5,7 @@
   declares      = {erklærer},
   declare       = {erklærer},
   and           = {og},
-  preamble      = {brugen\ af\ generativ\ AI\ i\ forskningsarbejdet\ og\ skriveprocessen\ for\ dette\ dokument.\ I\ henhold\ til\ GAIDeT-taksonomien \nobreakspace  \cite{Suchikova:2025:GAIDeT}\ blev\ følgende\ opgaver\ delegeret\ til\ generative\ AI-værktøjer\ under\ fuldt\ menneskeligt\ opsyn:},
+  preamble      = {brugen\ af\ generativ\ AI\ i\ forskningsarbejdet\ og\ skriveprocessen\ for\ dette\ dokument.\ I\ henhold\ til\ GAIDeT-taksonomien\CiteGAIDeT\ blev\ følgende\ opgaver\ delegeret\ til\ generative\ AI-værktøjer\ under\ fuldt\ menneskeligt\ opsyn:},
   footnote      = {Denne\ erklæring\ blev\ genereret\ ved\ hjælp\ af\ \GAIengineName{}\ og\ \LaTeX-pakken\ \GAIpackageName{}},
   comment_label = {Yderligere\ kommentar},
   comment_star  = {Yderligere\ kommentar},

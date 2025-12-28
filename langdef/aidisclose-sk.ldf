@@ -5,7 +5,7 @@
   declares      = {vyhlasuje},
   declare       = {vyhlasujú},
   and           = {a},
-  preamble      = {použitie\ generatívnej\ UI\ pri\ výskumnej\ práci\ a\ procese\ písania\ tohto\ dokumentu.\ Podľa\ taxonómie\ GAIDeT \nobreakspace  \cite{Suchikova:2025:GAIDeT}\ boli\ nasledujúce\ úlohy\ delegované\ na\ nástroje\ generatívnej\ UI\ pod\ úplným\ ľudským\ dohľadom:},
+  preamble      = {použitie\ generatívnej\ UI\ pri\ výskumnej\ práci\ a\ procese\ písania\ tohto\ dokumentu.\ Podľa\ taxonómie\ GAIDeT\CiteGAIDeT\ boli\ nasledujúce\ úlohy\ delegované\ na\ nástroje\ generatívnej\ UI\ pod\ úplným\ ľudským\ dohľadom:},
   footnote      = {Toto\ vyhlásenie\ bolo\ vygenerované\ pomocou\ \GAIengineName{}\ a\ balíka\ \LaTeX{}\ \GAIpackageName{}},
   comment_label = {Ďalší\ komentár},
   comment_star  = {Ďalší\ komentár},
