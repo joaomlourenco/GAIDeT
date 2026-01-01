@@ -70,7 +70,7 @@ Set this option to `false` if you prefer to manage citations manually.
 
 The package automatically detects the document language via `babel` or `polyglossia` and loads the appropriate translation file.
 
-### Supported languages (v1.6.2)
+### Supported languages (v1.6.3)
 
 English (default), Catalan, Czech, Danish, Dutch, French, German, Greek, Italian, Polish, Portuguese, Slovak, Spanish, and Ukrainian.
 

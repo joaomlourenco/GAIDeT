@@ -19,11 +19,17 @@
 %% 1. Basic Utilities & Formatting
 \usepackage[T1]{fontenc}
 \usepackage{xcolor}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{booktabs}
 \usepackage{enumitem}
 \usepackage{multicol}
 \usepackage{minted}
+% \usepackage{lmodern}
+% \usepackage{newpx}
+\usepackage[rm]{roboto}
+% \usepackage{fontspec}\setmainfont{QTKorrin}
+% \usepackage{fontspec}\setmainfont{QTSchoolCentury}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% 2. Tables 
@@ -77,23 +83,25 @@
 
 \title{The \texttt{aidisclose} package}
 \author{João M. Lourenço\\\url{https://github.com/joaomlourenco/aidisclose}}
-\date{2025-12-30~(\gaiversion)}
+\date{2026-01-01~(\gaiversion)}
 \maketitle
 
 \begin{abstract}
-    The \texttt{aidisclose} package provides a standardized, transparent mechanism for declaring the use of Generative Artificial Intelligence (GAI) tools in academic, technical, and professional documents.
-    It implements the \emph{GAIDeT (Generative AI Delegation Taxonomy)}~\cite{Suchikova:2025:GAIDeT} and automates the creation of disclosure statements and checklists.
+    The \texttt{aidisclose} package implements the \emph{GAIDeT (Generative AI Delegation Taxonomy)}~\cite{Suchikova:2025:GAIDeT} to automate Generative AI disclosure statements and checklists. 
+    
     The package is supported by a companion website at \url{https://aidisclose.org}, which allows interactive generation of the LaTeX code to add to your document.
 \end{abstract}
 
-
+\begin{multicols}{2}
+  \footnotesize
 \tableofcontents
+\end{multicols}
 
 \section{Introduction}
 \label{sec:introduction}
 
-\texttt{aidisclose} is designed to support emerging ethical, institutional, and publisher requirements concerning AI-assisted content creation.
-It allows authors to:
+The \texttt{aidisclose} is designed to support emerging ethical, institutional, and publisher requirements concerning AI-assisted content creation.
+It allows \LaTeX\ authors to:
 
 \begin{itemize}
     \item Select specific tasks delegated to Generative ~AI (GAI) from the GAIDeT taxonomy~\cite{Suchikova:2025:GAIDeT} (e.g., idea generation, data cleaning, text summarization).
@@ -125,11 +133,11 @@ Load the package in your document preamble:
 \usepackage[<options>]{aidisclose}
 \end{ltx}
 
-\subsection{Options}
-The package currently supports the following key-value options:
+% \subsection{Options}
+The package currently supports the following \textbf{key-value options}:
 
 \begin{description}
-    \item[\texttt{autobib=true|false}] (Default: \texttt{true})\\
+    \item[\texttt{autobib\,=\,true\,|\,false}] (Default: \texttt{true})\\
     When enabled, the package automatically:
     \begin{enumerate}
         \item Writes a \texttt{aidisclose.bib} file containing the references for GAIDeT~\cite{Suchikova:2025:GAIDeT} and this package~\cite{Lourenco:2025:aidisclose}.
